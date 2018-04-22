@@ -5,11 +5,11 @@ function get_today_string() {
 }
 
 function refresh_badge(total_min) {
-  const hour = (Math.floor(total_min*1.0 / 60) % 10)
+  const hour = Math.floor(total_min*1.0 / 60)
   const min = Math.floor(total_min - hour*60)
   const prefix_for_min = (min >= 10 ? "" : "0")
 
-  const badge_text = `${hour}:${prefix_for_min}${min}`
+  const badge_text = `${hour % 10}:${prefix_for_min}${min}`
 
   // Show hhmm for badge
   chrome.browserAction.setBadgeText({
